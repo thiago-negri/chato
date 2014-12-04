@@ -1,0 +1,84 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+hr {
+    clear: both;
+    visibility: hidden;
+}
+.chato-app {
+    padding: 15px;
+    width: 100%;
+}
+.chato-connect-form {
+    padding: 0 15px 15px 15px;
+    border-bottom: 2px solid #dddddd;
+}
+.chato-connect-form label {
+    float: left;
+    margin-right: 10px;
+    width: 100px;
+    text-align: right;
+}
+.chato-connect-form input {
+    display: block;
+    margin-bottom: 15px;
+}
+.chato-connect-form button {
+    margin-left: 110px;
+}
+.chato-connect-form.connected {
+    float: right;
+}
+.chato-thread-form {
+    padding: 15px;
+    border: 2px solid #cccccc;
+    border-radius: 10px;
+    width: 300px;
+    float: left;
+    margin-top: 15px;
+}
+.chato-thread-form label {
+    margin-right: 8px;
+}
+.chato-thread-form button {
+    display: block;
+    margin-top: 8px;
+    float: right;
+}
+.chato-thread {
+    width: 30%;
+    float: left;
+    border: 2px solid #cccccc;
+    border-radius: 10px;
+    margin: 15px;
+    padding: 15px;
+}
+.chato-title {
+    width: 100%;
+}
+.chato-title h1 {
+    width: 100%;
+    text-align: center;
+    padding: 0 15px 15px 15px;
+    border-bottom: 2px solid #cccccc;
+}
+.chato-messages {
+    width: 100%;
+    height: 300px;
+    overflow: auto;
+}
+.chato-messages p {
+    padding: 7px;
+    border-bottom: 1px solid #d0d0d0;
+}
+.chato-message-form {
+    width: 100%;
+}
+.chato-message-form input {
+    width: 80%;
+}
+.chato-message-form button {
+    width: 20%;
+}
