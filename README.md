@@ -20,4 +20,12 @@ Running
 
 Run from the command line: `mvn clean package exec:java`
 
-Only AngularJS implementation is available yet. Check it out at http://localhost/angular/chato.html
+Only AngularJS implementation is available yet. Check it out at [localhost/angular/chato.html](http://localhost:80/angular/chato.html).
+
+Restrictions
+------------
+
+The code for the application should be self-contained and easy to add to an existing page:
+
+1. Single JavaScript file to include, no extra files.
+2. Should not add anything to the global object, the code may bind itself to an element by `id` if needed.
