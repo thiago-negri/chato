@@ -20,7 +20,7 @@ Running
 
 Run from the command line: `mvn clean package exec:java`
 
-Only AngularJS implementation is available yet. Check it out at [localhost/angular/chato.html](http://localhost:80/angular/chato.html).
+Only AngularJS implementation is available yet. Check it out at [localhost/angular/chato-angular.html](http://localhost:80/angular/chato-angular.html).
 
 Restrictions
 ------------

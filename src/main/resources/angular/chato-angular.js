@@ -1,6 +1,8 @@
 (function() {
   'use strict';
 
+  // FIXME Create a service to handle server communication, remove $http usage from directives.
+
   var chato = angular.module('chato', []);
 
   chato.directive('chatoApp', function () {
