@@ -3,6 +3,7 @@ package chato;
 import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
+import java.util.UUID;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
@@ -18,37 +19,37 @@ import javax.ws.rs.core.Response.Status;
 public class ThreadsResource {
 
 	@GET
-	public Collection<String> list() {
-		return ChatoState.threads.values().stream().map(ChatThread::title).collect(Collectors.toList());
+	public Collection<ChatThread> list() {
+		return ChatoState.threads.values();
 	}
 
 	@POST
-	public void create(CreateThreadRequest request) {
-		if (ChatoState.threads.get(request.threadName) != null) {
-			throw new WebApplicationException(Status.CONFLICT);
-		}
-		ChatThread thread = new ChatThread(request.threadName);
-		ChatoState.threads.put(request.threadName, thread);
+	public ChatThread create(CreateThreadRequest request) {
+		String threadID = UUID.randomUUID().toString();
+		ChatThread thread = new ChatThread(threadID, request.threadName);
+		ChatoState.threads.put(thread.id, thread);
+		return thread;
 	}
 
 	@GET
-	@Path("/{threadId}")
-	public List<String> messages(@PathParam("threadId") String threadId) {
-		ChatThread thread = ChatoState.threads.get(threadId);
+	@Path("/{threadID}")
+	public ChatThread messages(@PathParam("threadID") String threadID) {
+		ChatThread thread = ChatoState.threads.get(threadID);
 		if (thread == null) {
 			throw new WebApplicationException(Status.NOT_FOUND);
 		}
-		return thread.messages;
+		return thread;
 	}
 
-	@POST
-	@Path("/{threadId}")
-	public void messages(@PathParam("threadId") String threadId, PostMessageRequest request) {
+	@PATCH
+	@Path("/{threadID}")
+	public ChatThread messages(@PathParam("threadID") String threadId, PostMessageRequest request) {
 		ChatThread thread = ChatoState.threads.get(threadId);
 		if (thread == null) {
 			throw new WebApplicationException(Status.NOT_FOUND);
 		}
 		thread.messages.add(request.username + ": " + request.message);
+		return thread;
 	}
 
 }

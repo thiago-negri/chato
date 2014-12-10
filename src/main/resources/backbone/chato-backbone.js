@@ -5,15 +5,21 @@
 
       }),
       ThreadMessages = Backbone.Collection.extend({
+        initialize: function(options) {
+          this.threadName = options.threadName;
+        },
         model: ThreadMessage,
         url: function() {
-          // Did not work, is sending a GET to undefined
           return 'http://localhost/api/threads/' + encodeURIComponent(this.threadName);
         }
       }),
 
       ChatThread = Backbone.Model.extend({
-
+        initialize: function(options) {
+          this.threadName = options.threadName;
+          this.messages = new ThreadMessages({threadName: this.threadName});
+        },
+        urlRoot: 'http://localhost/api/threads'
       }),
       ChatThreads = Backbone.Collection.extend({
         model: ChatThread,
@@ -30,8 +36,7 @@
       }),
       chatoAppElement = document.getElementById('chatoApp'),
       chatoApp = new ChatoApp({el: chatoAppElement}),
-      chatThreads = new ChatThreads(),
-      threadMessages = new ThreadMessages({threadName:'bar'});
+      chatThreads = new ChatThreads();
 
   chatoApp.render();
 
@@ -39,5 +44,9 @@
 
   var fooThread = chatThreads.create({threadName: 'foo'});
 
-  threadMessages.fetch();
+  setTimeout(function() { fooThread.fetch(); }, 1000);
+  setTimeout(function() { fooThread.save({username: 'thiagon', message: 'Hello, world!'}, {patch: true}); }, 2000);
+  setTimeout(function() { fooThread.save({username: 'thiagon', message: 'Hello, fuckers!'}, {patch: true}); }, 3000);
+  setTimeout(function() { console.log(fooThread.get('username')); }, 4000);
+  setTimeout(function() { console.log(fooThread.get('messages')); }, 4500);
 }());

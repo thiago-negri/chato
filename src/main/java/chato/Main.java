@@ -13,9 +13,9 @@ public final class Main {
 		URI uri = UriBuilder.fromUri("http://0.0.0.0/api").port(80).build();
 		ResourceConfig config = new ChatoApp();
 		HttpServer server = GrizzlyHttpServerFactory.createHttpServer(uri, config);
-                server.getServerConfiguration().addHttpHandler(new CLStaticHttpHandler(ChatoApp.class.getClassLoader()), "/");
+		server.getServerConfiguration().addHttpHandler(new CLStaticHttpHandler(ChatoApp.class.getClassLoader()), "/");
 		server.start();
-                System.out.println("Press enter to stop");
+    System.out.println("Press enter to stop");
 		System.in.read();
 		server.shutdown();
 	}

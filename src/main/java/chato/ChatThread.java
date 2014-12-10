@@ -6,16 +6,18 @@ import java.util.List;
 
 public class ChatThread {
 
-	public final String title;
-	public final List<String> messages;
+	public String id;
+	public String threadName;
+	public List<String> messages;
 
-	public ChatThread(String title) {
-		this.title = title;
+	public ChatThread(String id, String threadName) {
+		this.id = id;
+		this.threadName = threadName;
 		this.messages = Collections.synchronizedList(new ArrayList<>());
 	}
 
-	public String title() {
-		return title;
+	public String threadName() {
+		return threadName;
 	}
 
 }
